@@ -1,0 +1,11 @@
+Section: misc
+Priority: optional
+Homepage: https://test.tet
+Standards-Version: 1.0.0
+Package: testproject
+Version: REPLACED_DURING_MAKE
+Depends: 
+Maintainer: nobody
+Architecture: amd64
+Description: Application
+Application

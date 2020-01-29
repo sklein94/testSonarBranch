@@ -28,7 +28,6 @@ include build/make/variables.mk
 include build/make/info.mk
 include build/make/dependencies-gomod.mk
 include build/make/build.mk
-include build/make/unit-test-docker-compose.mk
 include build/make/static-analysis.mk
 include build/make/clean.mk
 include build/make/package-debian.mk
