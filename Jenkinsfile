@@ -11,7 +11,7 @@ node('master') {
   stage('SonarQube') {
     def scannerHome = tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     withSonarQubeEnv {
-      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch:${env.BRANCH_NAME} -Dsonar.projectName=testSonarBranch:${env.BRANCH_NAME}"
+      sh "${scannerHome}/bin/sonar-scanner -Dsonar.branch.name=${env.BRANCH_NAME} -Dsonar.projectKey=testSonarBranch:${env.BRANCH_NAME} -Dsonar.projectName=testSonarBranch:${env.BRANCH_NAME}"
     }
     timeout(time: 2, unit: 'MINUTES') { // Needed when there is no webhook for example
         def qGate = waitForQualityGate()
