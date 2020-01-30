@@ -1,5 +1,7 @@
 #!groovy
 
+@Library('github.com/cloudogu/ces-build-lib@59d3e94')
+
 node('master') {
 
   project = 'github.com/sklein/testSonarBranch'
