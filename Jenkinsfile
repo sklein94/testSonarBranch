@@ -1,6 +1,6 @@
 #!groovy
 
-node('docker') {
+node('master') {
 
   project = 'github.com/sklein/testSonarBranch'
 
