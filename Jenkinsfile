@@ -1,6 +1,7 @@
 #!groovy
 
 @Library('github.com/cloudogu/ces-build-lib@59d3e94')
+import com.cloudogu.ces.cesbuildlib.*
 
 node('master') {
 
