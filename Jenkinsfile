@@ -16,10 +16,15 @@ node('master') {
     withSonarQubeEnv {
       String branch = "${env.BRANCH_NAME}"
       echo branch
-      if ("${env.BRANCH_NAME}" == "develop"){
+      if (branch == "develop"){
          sh "${scannerHome}/bin/sonar-scanner -Dsonar.branch.name=${env.BRANCH_NAME} -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
-      } else if ("${env.BRANCH_NAME}" == "master"){
+      } else if (branch == "master"){
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
+      } else if (branch.startsWith("feature") && isPullRequest()){
+        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.projectName=testSonarBranch"
+      }
+      else if (branch.startsWith("feature")){
+           sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
       }
     }
     timeout(time: 2, unit: 'MINUTES') { // Needed when there is no webhook for example
