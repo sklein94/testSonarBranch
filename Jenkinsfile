@@ -24,10 +24,7 @@ node('master') {
       } else if (branch == "master"){
         echo "branch is master"
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
-      } else if (env.CHANGE_TARGET){
-                "-Dsonar.pullrequest.branch=${env.CHANGE_BRANCH} " +
-        "-Dsonar.pullrequest.key=${env.CHANGE_ID} " +
-        
+      } else if (env.CHANGE_TARGET){        
         echo "branch is pull request"
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.pullrequest.key=${env.CHANGE_ID} -Dsonar.pullrequest.branch=${env.CHANGE_BRANCH} -Dsonar.projectKey=testSonarBranch -Dsonar.branch.name=${env.CHANGE_BRANCH}-PR${env.CHANGE_ID} -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.projectName=testSonarBranch"
       }
