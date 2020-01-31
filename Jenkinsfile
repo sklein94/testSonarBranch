@@ -27,12 +27,6 @@ node('master') {
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
       }
     }
-    timeout(time: 2, unit: 'MINUTES') { // Needed when there is no webhook for example
-        def qGate = waitForQualityGate()
-        if (qGate.status != 'OK') {
-            unstable("Pipeline unstable due to SonarQube quality gate failure")
-        }
-    }
   }
 
 }
