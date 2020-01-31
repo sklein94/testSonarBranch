@@ -1,9 +1,9 @@
 # Set these to the desired values
-ARTIFACT_ID=
-VERSION=
+ARTIFACT_ID=testSonarBranch
+VERSION=1.0.0
 
 MAKEFILES_VERSION=2.1.0
-
+GO_ENVIRONMENT=GO111MODULE=on
 .DEFAULT_GOAL:=compile
 
 # set PRE_COMPILE to define steps that shall be executed before the go build
