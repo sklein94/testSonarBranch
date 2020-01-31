@@ -22,7 +22,7 @@ node('master') {
          sh "${scannerHome}/bin/sonar-scanner -Dsonar.branch.name=${env.BRANCH_NAME} -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
       } else if (branch == "master"){
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
-      } else if (branch.startsWith("feature") && isPullRequest()){
+      } else if (isPullRequest() && (${env.CHANGE_BRANCH}).startsWith("feature")){
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.projectName=testSonarBranch"
       }
       else {
