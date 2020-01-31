@@ -24,7 +24,7 @@ node('master') {
       } else if (branch == "master"){
         echo "branch is master"
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
-      } else if ("${env.CHANGE_BRANCH}"){
+      } else if (env.CHANGE_TARGET){
         echo "branch is pull request: ${env.CHANGE_BRANCH}"
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.projectName=testSonarBranch"
       }
