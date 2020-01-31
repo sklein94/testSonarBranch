@@ -19,13 +19,17 @@ node('master') {
     withSonarQubeEnv {
       String branch = "${env.BRANCH_NAME}"
       if (branch == "develop"){
+        echo "branch is develop"
          sh "${scannerHome}/bin/sonar-scanner -Dsonar.branch.name=${env.BRANCH_NAME} -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
       } else if (branch == "master"){
+        echo "branch is master"
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
-      } else if (branch.startsWith("feature") && isPullRequest()){
+      } else if (${env.CHANGE_BRANCH} != null){
+        echo "branch is pull request"
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.projectName=testSonarBranch"
       }
       else {
+        echo "branch is soemthing else"
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.branch.name=${env.BRANCH_NAME} -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
       }
     }
