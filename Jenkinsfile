@@ -12,6 +12,9 @@ node('master') {
   }
 
   stage('SonarQube') {
+        echo "${env.CHANGE_BRANCH}"
+        echo "${env.CHANGE_TARGET}"
+        echo "${env.CHANGE_ID}"
     def scannerHome = tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     withSonarQubeEnv {
       String branch = "${env.BRANCH_NAME}"
@@ -20,9 +23,6 @@ node('master') {
       } else if (branch == "master"){
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
       } else if (branch.startsWith("feature") && isPullRequest()){
-        echo "${env.CHANGE_BRANCH}"
-        echo "${env.CHANGE_TARGET}"
-        echo "${env.CHANGE_ID}"
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.projectName=testSonarBranch"
       }
       else {
