@@ -14,7 +14,7 @@ node('master') {
   stage('SonarQube') {
     def scannerHome = tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     withSonarQubeEnv {
-      if ("${env.BRANCH_NAME}".startsWith('feature')){
+      if ("${env.BRANCH_NAME}" == "develop"){
          sh "${scannerHome}/bin/sonar-scanner -Dsonar.branch.name=${env.BRANCH_NAME} -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
       } else if ("${env.BRANCH_NAME}" == "master"){
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
