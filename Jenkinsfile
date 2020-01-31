@@ -23,8 +23,8 @@ node('master') {
       } else if (branch.startsWith("feature") && isPullRequest()){
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.projectName=testSonarBranch"
       }
-      else if (branch.startsWith("feature")){
-           sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
+      else {
+        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
       }
     }
     timeout(time: 2, unit: 'MINUTES') { // Needed when there is no webhook for example
