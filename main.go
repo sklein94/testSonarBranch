@@ -37,6 +37,8 @@ func main() {
  	fmt.Println("main2")
  	fmt.Println("main2")
  	fmt.Println("main2")
+ 	fmt.Println("i was added before pr")
+ 	fmt.Println("me too")
 }
 
 
