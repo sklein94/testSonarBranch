@@ -73,6 +73,22 @@ func test2(){
    fmt.Println("test")
 }
 
+func test2p1(){
+   fmt.Println("test")
+   fmt.Println("test")
+   fmt.Println("test")
+   fmt.Println("test")
+   fmt.Println("test")
+   fmt.Println("test")
+   fmt.Println("test")
+   fmt.Println("test")
+   fmt.Println("test")
+   fmt.Println("test")
+   fmt.Println("test")
+   fmt.Println("test")
+   fmt.Println("test")
+}
+
 func test3(){
    fmt.Println("test")
 }
