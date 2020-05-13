@@ -27,6 +27,9 @@ node('master') {
       } else if (env.CHANGE_TARGET){        
         echo "branch is pull request"
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.branch.name=${env.CHANGE_BRANCH}-PR${env.CHANGE_ID} -Dsonar.branch.target=${env.CHANGE_TARGET} -Dsonar.projectName=testSonarBranch"
+      } else if (branch.startsWith("feature/")){
+        echo "branch is feature branch"
+        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.branch.name=${env.BRANCH_NAME} -Dsonar.branch.target=develop -Dsonar.projectName=testSonarBranch"
       }
       else {
         echo "branch is something else"
