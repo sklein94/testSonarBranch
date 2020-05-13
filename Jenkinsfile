@@ -20,7 +20,7 @@ node('master') {
       String branch = "${env.BRANCH_NAME}"
       if (branch == "develop"){
         echo "branch is develop"
-         sh "${scannerHome}/bin/sonar-scanner -Dsonar.branch.name=${env.BRANCH_NAME} -Dsonar.branch.target=${env.CHANGE_TARGET} -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
+         sh "${scannerHome}/bin/sonar-scanner -Dsonar.branch.name=${env.BRANCH_NAME} -Dsonar.branch.target=master -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
       } else if (branch == "master"){
         echo "branch is master"
         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=testSonarBranch -Dsonar.projectName=testSonarBranch"
